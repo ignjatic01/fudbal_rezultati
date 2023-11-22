@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com</groupId>
+  <groupId>com.projekat</groupId>
   <artifactId>FudbalRezultati</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>FudbalRezultati</name>
@@ -62,7 +62,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.fudbalrezultati/com.fudbalrezultati.HelloApplication</mainClass>
+              <mainClass>com.projekat.fudbalrezultati/com.projekat.fudbalrezultati.HelloApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

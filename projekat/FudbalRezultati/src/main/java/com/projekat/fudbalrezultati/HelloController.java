@@ -1,4 +1,4 @@
-package com.fudbalrezultati;
+package com.projekat.fudbalrezultati;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

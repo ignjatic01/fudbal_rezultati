@@ -1,9 +1,10 @@
-module com.fudbalrezultati {
+module com.projekat.fudbalrezultati {
     requires javafx.controls;
     requires javafx.fxml;
 
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
-    opens com.fudbalrezultati to javafx.fxml;
-    exports com.fudbalrezultati;
+    opens com.projekat.fudbalrezultati to javafx.fxml;
+    exports com.projekat.fudbalrezultati;
 }
