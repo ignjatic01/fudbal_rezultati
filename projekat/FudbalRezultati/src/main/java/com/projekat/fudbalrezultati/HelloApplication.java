@@ -6,9 +6,10 @@ import com.projekat.contoller.ControllerDrzava;
 import com.projekat.model.Drzava;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,16 +26,14 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         window = stage;
-        Label label1 = new Label("Wlecome to the first scene");
-        Button button1 = new Button("Go to scene 2");
+        window.setTitle("Menu");
 
-        VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(label1, button1);
-        Scene scene1 = new Scene(layout1, 200, 200);
-        button1.setOnAction(e -> DrzavaScene.ucitajScenu(window, scene1));
+        MenuBar menuBar = createMenuBar(window);
 
-        window.setScene(scene1);
-        window.setTitle("Title");
+        BorderPane layout = new BorderPane();
+        layout.setTop(menuBar);
+        Scene scene = new Scene(layout, 400, 300);
+        window.setScene(scene);
         window.show();
     }
 
@@ -42,9 +41,39 @@ public class HelloApplication extends Application {
     {
         launch();
         ControllerDrzava cDrzava = new ControllerDrzava();
-        for(Drzava d : cDrzava.getAll())
-        {
-            System.out.println(d);
-        }
+//        Drzava d = new Drzava(1,"Bosna i Hercegovina","BIH");
+//        int retVal = cDrzava.update(d);
+//        System.out.println(retVal);
+    }
+
+    public static MenuBar createMenuBar(Stage window)
+    {
+        Menu sifarnici = new Menu("Šifarnici");
+
+        MenuItem drzava = new MenuItem("Drzava");
+        drzava.setOnAction(e ->DrzavaScene.ucitajScenu(window));
+        sifarnici.getItems().add(drzava);
+
+        Menu opcije = new Menu("Opcije");
+
+        MenuItem osvjezi = new MenuItem("Osvježi");
+        osvjezi.setOnAction(e -> {
+            Scene scene = window.getScene();
+            if (scene != null)
+            {
+                Parent root = scene.getRoot();
+                if (root != null)
+                {
+                    root.requestLayout();
+                    root.applyCss();
+                }
+            }
+        });
+        opcije.getItems().add(osvjezi);
+
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(sifarnici, opcije);
+
+        return menuBar;
     }
 }

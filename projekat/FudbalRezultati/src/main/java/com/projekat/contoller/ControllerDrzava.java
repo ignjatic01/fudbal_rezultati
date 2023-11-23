@@ -11,4 +11,15 @@ public class ControllerDrzava
     {
         return WrapperDrzava.selectAll();
     }
+
+    public boolean save(Drzava d)
+    {
+        return WrapperDrzava.insert(d) == 1;
+    }
+
+    public int update(Drzava d)
+    {
+        return WrapperDrzava.update(d);
+    }
+
 }

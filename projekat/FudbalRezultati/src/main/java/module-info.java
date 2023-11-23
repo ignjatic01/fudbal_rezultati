@@ -6,5 +6,6 @@ module com.projekat.fudbalrezultati {
     requires java.sql;
 
     opens com.projekat.fudbalrezultati to javafx.fxml;
+    opens com.projekat.model to javafx.base;
     exports com.projekat.fudbalrezultati;
 }

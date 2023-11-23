@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="651ba6ea-d5b5-465b-be5a-6e03fc4fdf4c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/DrzavaScene.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Drzava.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperDrzava.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fudbalrezultati/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fudbalrezultati/HelloController.java" beforeDir="false" />
+    <list default="true" id="651ba6ea-d5b5-465b-be5a-6e03fc4fdf4c" name="Changes" comment="Testna konekcija s bazom">
+      <change afterPath="$PROJECT_DIR$/../../NoviModel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/util/DBUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/projekat/fudbalrezultati/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerDrzava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerDrzava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/DrzavaScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/DrzavaScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperDrzava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperDrzava.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/fudbalrezultati/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,25 +37,34 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2YXlUFBEVB8XN1sTvg5zBqno1Lf" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/usr/share/java/mysql-connector-j-8.1.0.jar",
+    "last_opened_file_path": "/home/milan/Za snimanje/Fakultet/Baze Podataka/Tst/11108_20-Ognjen_Milekic-Prodaja drvene gradje/projekat_bp_ognjen/projekat_bp_ognjen",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/projekat/fudbalrezultati" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.projekat.fudbalrezultati.HelloApplication" />
@@ -85,6 +94,20 @@
       <option name="presentableId" value="Default" />
       <updated>1700679819936</updated>
     </task>
+    <task id="LOCAL-00001" summary="Testna konekcija s bazom">
+      <option name="closed" value="true" />
+      <created>1700685281731</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700685281731</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Testna konekcija s bazom" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testna konekcija s bazom" />
   </component>
 </project>
