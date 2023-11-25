@@ -41,9 +41,7 @@ public class HelloApplication extends Application {
     {
         launch();
         ControllerDrzava cDrzava = new ControllerDrzava();
-//        Drzava d = new Drzava(1,"Bosna i Hercegovina","BIH");
-//        int retVal = cDrzava.update(d);
-//        System.out.println(retVal);
+//        System.out.println(cDrzava.delete(62));
     }
 
     public static MenuBar createMenuBar(Stage window)
@@ -52,7 +50,11 @@ public class HelloApplication extends Application {
 
         MenuItem drzava = new MenuItem("Drzava");
         drzava.setOnAction(e ->DrzavaScene.ucitajScenu(window));
-        sifarnici.getItems().add(drzava);
+
+        MenuItem liga = new MenuItem("Liga");
+        liga.setOnAction(e -> LigaScene.ucitajScenu(window));
+
+        sifarnici.getItems().addAll(drzava, liga);
 
         Menu opcije = new Menu("Opcije");
 

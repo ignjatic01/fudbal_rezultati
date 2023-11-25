@@ -13,6 +13,7 @@ public class WrapperDrzava
     private static final String SQL_SELECT_ALL = "select * from drzava";
     private static final String SQL_INSERT = "insert into drzava(idDrzava, drzava, kod) values(null, ?, ?)";
     private static final String SQL_UPDATE = "Update drzava set drzava = ?, kod = ? where idDrzava = ?";
+    private static final String SQL_DELETE = "delete from drzava where (idDrzava = ?)";
 
     public static List<Drzava> selectAll()
     {
@@ -80,6 +81,25 @@ public class WrapperDrzava
             c = DBUtil.getConnection();
             Object values[] = {d.getDrzava(), d.getKod(), d.getIdDrzava()};
             ps = DBUtil.preparedStatement(c, SQL_UPDATE, false, values);
+            retVal = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.close(ps, c);
+        }
+        return retVal;
+    }
+
+    public static int delete(int id)
+    {
+        int retVal = 0;
+        Connection c = null;
+        PreparedStatement ps = null;
+        try {
+            c = DBUtil.getConnection();
+            ps = c.prepareStatement(SQL_DELETE, Statement.NO_GENERATED_KEYS);
+            ps.setInt(1, id);
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

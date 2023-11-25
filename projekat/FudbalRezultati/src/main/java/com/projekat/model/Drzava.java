@@ -68,10 +68,6 @@ public class Drzava
     @Override
     public String toString()
     {
-        return "Drzava{" +
-                "idDrzava=" + idDrzava +
-                ", drzava='" + drzava + '\'' +
-                ", kod='" + kod + '\'' +
-                '}';
+        return idDrzava + " - " + drzava  + " - " + kod;
     }
 }

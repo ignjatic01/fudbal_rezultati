@@ -5,6 +5,7 @@ import com.projekat.model.Drzava;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -94,12 +95,76 @@ public class DrzavaScene
         hBoxUpdate.setSpacing(10);
         hBoxUpdate.getChildren().addAll(idDrzavaUpdate ,drzavaUpdate, kodUpdate, updateButton);
 
-        VBox layout = new VBox();
-        layout.getChildren().addAll(menuBar, table, inputLabel, hBox, new Separator(), updateLabel, hBoxUpdate);
+        //Delete
+        Label deleteLabel = new Label("Brisanje podataka");
+        deleteLabel.setPadding(new Insets(10, 0, 0, 10));
+        TextField idDrzavaDelete;
 
-        Scene scene = new Scene(layout, 420, 400);
+        idDrzavaDelete = new TextField();
+        idDrzavaDelete.setPromptText("ID drzave");
+
+        Button deleteButton = new Button("Obriši");
+        deleteButton.setStyle("-fx-background-color: #FF5252; -fx-text-fill: white;");
+        deleteButton.setOnAction(e -> deleteButton(idDrzavaDelete, table));
+
+        HBox hBoxDelete = new HBox();
+        hBoxDelete.setPadding(new Insets(10, 25, 10, 10));
+        hBoxDelete.setSpacing(10);
+        hBoxDelete.getChildren().addAll(idDrzavaDelete, deleteButton);
+        hBoxDelete.setAlignment(Pos.BASELINE_RIGHT);
+
+        SelectionModel<Drzava> selectionModel = table.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener( (obs, oldSelection, newSelection) -> {
+            if(newSelection != null)
+            {
+                //System.out.println(newSelection);
+                idDrzavaUpdate.setText(String.valueOf(newSelection.getIdDrzava()));
+                idDrzavaDelete.setText(String.valueOf(newSelection.getIdDrzava()));
+                drzavaUpdate.setText(newSelection.getDrzava());
+                kodUpdate.setText(newSelection.getKod());
+            }
+        });
+
+        VBox layout = new VBox();
+        layout.getChildren().addAll(menuBar, table, inputLabel, hBox, new Separator(), updateLabel, hBoxUpdate,
+                new Separator(), deleteLabel, hBoxDelete);
+
+        Scene scene = new Scene(layout, 420, 450);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private static void deleteButton(TextField idDrzavaDelete, TableView<Drzava> table)
+    {
+        int id = Integer.parseInt(idDrzavaDelete.getText());
+        int index = -1;
+        for(int i = 0; i < table.getItems().size(); i++)
+        {
+            if(table.getItems().get(i).getIdDrzava() == id)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        ControllerDrzava cDrzava = new ControllerDrzava();
+        if(cDrzava.delete(id) == 1 && index != -1)
+        {
+            idDrzavaDelete.clear();
+            table.getItems().remove(index);
+            table.refresh();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Brisanje neuspjesno");
+            alert.setHeaderText("Id ne postoji ili neki drugi podatak zavisi od izabranog podatka");
+            javafx.animation.KeyFrame keyFrame = new javafx.animation.KeyFrame(Duration.seconds(5), e -> alert.close());
+            javafx.animation.Timeline timeline = new javafx.animation.Timeline(keyFrame);
+            timeline.play();
+
+            alert.show();
+        }
     }
 
     private static void updateDrzava(TextField idDrzavaUpdate, TextField drzavaUpdate, TextField kodUpdate, TableView<Drzava> table)

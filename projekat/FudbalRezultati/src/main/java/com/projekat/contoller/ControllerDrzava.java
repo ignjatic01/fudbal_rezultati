@@ -22,4 +22,9 @@ public class ControllerDrzava
         return WrapperDrzava.update(d);
     }
 
+    public int delete(int id)
+    {
+        return WrapperDrzava.delete(id);
+    }
+
 }
