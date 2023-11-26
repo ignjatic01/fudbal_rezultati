@@ -3,6 +3,7 @@ package com.projekat.fudbalrezultati;
 
 
 import com.projekat.contoller.ControllerDrzava;
+import com.projekat.contoller.ControllerKategorija;
 import com.projekat.model.Drzava;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -40,8 +41,11 @@ public class HelloApplication extends Application {
     public static void main(String[] args)
     {
         launch();
-        ControllerDrzava cDrzava = new ControllerDrzava();
+//        ControllerDrzava cDrzava = new ControllerDrzava();
+//        System.out.println(cDrzava.getById(34));
 //        System.out.println(cDrzava.delete(62));
+//        ControllerKategorija cKategorija = new ControllerKategorija();
+//        System.out.println(cKategorija.getById(5));
     }
 
     public static MenuBar createMenuBar(Stage window)

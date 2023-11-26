@@ -16,4 +16,9 @@ public class ControllerLiga
     {
         return WrapperLiga.insert(l) == 1;
     }
+
+    public int update(Liga l)
+    {
+        return WrapperLiga.update(l);
+    }
 }

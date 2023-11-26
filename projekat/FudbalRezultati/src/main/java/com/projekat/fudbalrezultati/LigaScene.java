@@ -108,7 +108,7 @@ public class LigaScene
 
         Button addButton = new Button("Dodaj");
         addButton.setStyle("-fx-background-color: #4caf50; -fx-text-fill: white;");
-        addButton.setMinSize(128, 20);
+        addButton.setMinSize(128, 25);
         StackPane spBtn = new StackPane();
         spBtn.setPadding(new Insets(20, 10, 10, 75));
         spBtn.getChildren().add(addButton);
@@ -120,8 +120,53 @@ public class LigaScene
         hBoxInput2.setSpacing(30);
         hBoxInput2.getChildren().addAll(vBoxDKI, vBoxCKI, spBtn);
 
+        //Update
+        Label updateLabel = new Label("Ažuriranje podataka");
+        updateLabel.setPadding(new Insets(10, 0, 0, 10));
+
+        Label idLigeUpdateLabel = new Label("ID lige:");
+        TextField idLigaUpdate = new TextField();
+        idLigaUpdate.setMaxWidth(137);
+        idLigaUpdate.setMinWidth(115);
+        VBox vBoxIDU = new VBox();
+        vBoxIDU.setPadding(new Insets(5));
+        vBoxIDU.getChildren().addAll(idLigeUpdateLabel, idLigaUpdate);
+
+        Label nazivLigeUpdateLabel = new Label("Naziv lige:");
+        TextField nazivLigeUpdate = new TextField();
+        nazivLigeUpdate.setMaxWidth(300);
+        nazivLigeUpdate.setMinWidth(220);
+        VBox vBoxNLU = new VBox();
+        vBoxNLU.setPadding(new Insets(5));
+        vBoxNLU.getChildren().addAll(nazivLigeUpdateLabel, nazivLigeUpdate);
+
+        Label choiceDrzavaUpdateLabel = new Label("Država");
+        ChoiceBox<Drzava> choiceDrzavaUpdate = new ChoiceBox<>(drzave);
+        choiceDrzavaUpdate.setMinWidth(300);
+        choiceDrzavaUpdate.setMaxWidth(300);
+        VBox vBoxCDU = new VBox();
+        vBoxCDU.setPadding(new Insets(5));
+        vBoxCDU.getChildren().addAll(choiceDrzavaUpdateLabel, choiceDrzavaUpdate);
+
+        HBox hBoxUpdate1 = new HBox();
+        hBoxUpdate1.setPadding(new Insets(10, 10, 10, 10));
+        hBoxUpdate1.setSpacing(60);
+        hBoxUpdate1.getChildren().addAll(vBoxIDU, vBoxNLU, vBoxCDU);
+
+        SelectionModel<Liga> selectionModel = table.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener( (obs, oldSelection, newSelection) -> {
+            if(newSelection != null)
+            {
+                idLigaUpdate.setText(String.valueOf(newSelection.getIdLiga()));
+                nazivLigeUpdate.setText(newSelection.getNazivLige());
+
+                ControllerDrzava controllerDrzava = new ControllerDrzava();
+                choiceDrzavaUpdate.setValue(controllerDrzava.getById(newSelection.getIdDrzava()));
+            }
+        });
+
         VBox layout =  new VBox();
-        layout.getChildren().addAll(menuBar, table, inputLabel, hBoxInput1, hBoxInput2);
+        layout.getChildren().addAll(menuBar, table, inputLabel, hBoxInput1, hBoxInput2, new Separator(), updateLabel, hBoxUpdate1);
         Scene scene = new Scene(layout, 850, 620);
         stage.setScene(scene);
         stage.show();

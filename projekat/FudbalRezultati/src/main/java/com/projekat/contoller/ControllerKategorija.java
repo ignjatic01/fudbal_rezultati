@@ -11,4 +11,9 @@ public class ControllerKategorija
     {
         return WrapperKategorija.selectAll();
     }
+
+    public Kategorija getById(int id)
+    {
+        return WrapperKategorija.selectById(id);
+    }
 }

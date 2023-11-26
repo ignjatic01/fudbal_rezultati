@@ -27,4 +27,9 @@ public class ControllerDrzava
         return WrapperDrzava.delete(id);
     }
 
+    public Drzava getById(int id)
+    {
+        return WrapperDrzava.selectById(id);
+    }
+
 }

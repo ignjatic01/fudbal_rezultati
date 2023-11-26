@@ -14,6 +14,7 @@ public class WrapperDrzava
     private static final String SQL_INSERT = "insert into drzava(idDrzava, drzava, kod) values(null, ?, ?)";
     private static final String SQL_UPDATE = "Update drzava set drzava = ?, kod = ? where idDrzava = ?";
     private static final String SQL_DELETE = "delete from drzava where (idDrzava = ?)";
+    private static final String SQL_SELECT_BY_ID = "select * from drzava where idDrzava = ?";
 
     public static List<Drzava> selectAll()
     {
@@ -108,5 +109,29 @@ public class WrapperDrzava
             DBUtil.close(ps, c);
         }
         return retVal;
+    }
+
+    public static Drzava selectById(int id)
+    {
+        Drzava drzava = null;
+        Connection c = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            c = DBUtil.getConnection();
+            ps = c.prepareStatement(SQL_SELECT_BY_ID, Statement.NO_GENERATED_KEYS);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if(rs.next())
+            {
+                drzava = new Drzava(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.close(rs, ps, c);
+        }
+        return drzava;
     }
 }
