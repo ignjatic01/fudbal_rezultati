@@ -97,14 +97,8 @@ public class Liga
 
     @Override
     public String toString() {
-        return "Liga{" +
-                "idLiga=" + idLiga +
-                ", nazivLige='" + nazivLige + '\'' +
-                ", idDrzava=" + idDrzava +
-                ", datumPocetka=" + datumPocetka +
-                ", datumKraja=" + datumKraja +
-                ", idKategorija=" + idKategorija +
-                '}';
+        String drz = drzava == null ? "Svijet" : drzava;
+        return  nazivLige + " - " + drz;
     }
 
     @Override

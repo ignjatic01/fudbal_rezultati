@@ -4,15 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="651ba6ea-d5b5-465b-be5a-6e03fc4fdf4c" name="Changes" comment="Delete za tabelu Drzava, prikaz i insert za tabelu Liga">
+    <list default="true" id="651ba6ea-d5b5-465b-be5a-6e03fc4fdf4c" name="Changes" comment="Izmjene i rjesavanje problema">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerKlub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerUtakmica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Klub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Utakmica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperKlub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperUtakmica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerDrzava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerDrzava.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerKategorija.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerKategorija.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerLiga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerLiga.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/LigaScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/LigaScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperDrzava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperDrzava.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperKategorija.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperKategorija.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/model/Liga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Liga.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperLiga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperLiga.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700947057813</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Izmjene i rjesavanje problema">
+      <option name="closed" value="true" />
+      <created>1700959644017</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700959644017</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -126,6 +138,7 @@
     <MESSAGE value="Testna konekcija s bazom" />
     <MESSAGE value="Prikaz, Insert i Edit za tabelu Drzava" />
     <MESSAGE value="Delete za tabelu Drzava, prikaz i insert za tabelu Liga" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete za tabelu Drzava, prikaz i insert za tabelu Liga" />
+    <MESSAGE value="Izmjene i rjesavanje problema" />
+    <option name="LAST_COMMIT_MESSAGE" value="Izmjene i rjesavanje problema" />
   </component>
 </project>

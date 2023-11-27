@@ -9,6 +9,7 @@ import com.projekat.model.Liga;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -140,7 +141,7 @@ public class LigaScene
         vBoxNLU.setPadding(new Insets(5));
         vBoxNLU.getChildren().addAll(nazivLigeUpdateLabel, nazivLigeUpdate);
 
-        Label choiceDrzavaUpdateLabel = new Label("Država");
+        Label choiceDrzavaUpdateLabel = new Label("Država:");
         ChoiceBox<Drzava> choiceDrzavaUpdate = new ChoiceBox<>(drzave);
         choiceDrzavaUpdate.setMinWidth(300);
         choiceDrzavaUpdate.setMaxWidth(300);
@@ -153,23 +154,185 @@ public class LigaScene
         hBoxUpdate1.setSpacing(60);
         hBoxUpdate1.getChildren().addAll(vBoxIDU, vBoxNLU, vBoxCDU);
 
+        Label datePickerPocetakUpdateLabel = new Label("Datum početka:");
+        DatePicker datePickerPocetakUpdate = new DatePicker();
+        VBox vBoxDPU = new VBox();
+        vBoxDPU.setPadding(new Insets(5));
+        vBoxDPU.getChildren().addAll(datePickerPocetakUpdateLabel, datePickerPocetakUpdate);
+
+        Label datePickerKrajUpdateLabel = new Label("Datum kraja:");
+        DatePicker datePickerKrajUpdate = new DatePicker();
+        VBox vBoxDKU = new VBox();
+        vBoxDKU.setPadding(new Insets(5));
+        vBoxDKU.getChildren().addAll(datePickerKrajUpdateLabel, datePickerKrajUpdate);
+
+        Label choiceKategorijaUpdateLabel = new Label("Kategorija:");
+        ChoiceBox<Kategorija> choiceKategorijaUpdate = new ChoiceBox<>(kategorije);
+        choiceKategorijaUpdate.setMinWidth(300);
+        choiceKategorijaUpdate.setMaxWidth(300);
+        VBox vBoxCKU = new VBox();
+        vBoxCKU.setPadding(new Insets(5));
+        vBoxCKU.getChildren().addAll(choiceKategorijaUpdateLabel, choiceKategorijaUpdate);
+
+        Button updateButton = new Button("Ažuriraj");
+        updateButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
+        updateButton.setOnAction(e -> updateLiga(idLigaUpdate, nazivLigeUpdate, choiceDrzavaUpdate, datePickerPocetakUpdate,
+                datePickerKrajUpdate, choiceKategorijaUpdate, table));
+        StackPane spUBtn = new StackPane();
+        spUBtn.setPadding(new Insets(13, 0, 0, 7));
+        spUBtn.getChildren().add(updateButton);
+
+
+        HBox hBoxUpdate2 = new HBox();
+        hBoxUpdate2.setPadding(new Insets(10, 10, 10, 10));
+        hBoxUpdate2.getChildren().addAll(vBoxDPU, vBoxDKU, vBoxCKU, spUBtn);
+
+        //Delete
+        Label deleteLabel = new Label("Brisanje podataka");
+        deleteLabel.setPadding(new Insets(10, 0, 0, 10));
+
+        Label idLigaDeleteLabel = new Label("ID lige:");
+        TextField idLigaDelete = new TextField();
+        idLigaDelete.setMinWidth(200);
+
+        VBox vBoxILD = new VBox();
+        vBoxILD.setPadding(new Insets(5));
+        vBoxILD.getChildren().addAll(idLigaDeleteLabel, idLigaDelete);
+
+        Button deleteButton = new Button("Obriši");
+        Label dummy = new Label();
+        deleteButton.setStyle("-fx-background-color: #FF5252; -fx-text-fill: white;");
+        deleteButton.setOnAction(e -> deleteButton(idLigaDelete, table));
+        VBox spDBtn = new VBox();
+        spDBtn.setPadding(new Insets(0, 0, 0, 15));
+        spDBtn.getChildren().addAll(dummy ,deleteButton);
+
+        HBox hBoxDelete = new HBox();
+        hBoxDelete.setPadding(new Insets(10, 40, 10, 10));
+        hBoxDelete.setSpacing(10);
+        hBoxDelete.getChildren().addAll(vBoxILD, spDBtn);
+        hBoxDelete.setAlignment(Pos.BASELINE_RIGHT);
+
         SelectionModel<Liga> selectionModel = table.getSelectionModel();
         selectionModel.selectedItemProperty().addListener( (obs, oldSelection, newSelection) -> {
             if(newSelection != null)
             {
                 idLigaUpdate.setText(String.valueOf(newSelection.getIdLiga()));
+                idLigaDelete.setText(String.valueOf(newSelection.getIdLiga()));
                 nazivLigeUpdate.setText(newSelection.getNazivLige());
 
                 ControllerDrzava controllerDrzava = new ControllerDrzava();
                 choiceDrzavaUpdate.setValue(controllerDrzava.getById(newSelection.getIdDrzava()));
+
+                datePickerPocetakUpdate.setValue(newSelection.getDatumPocetka() != null ?
+                        newSelection.getDatumPocetka().toLocalDate() : null);
+                datePickerKrajUpdate.setValue(newSelection.getDatumKraja() != null ?
+                        newSelection.getDatumKraja().toLocalDate() : null);
+
+                ControllerKategorija controllerKategorija = new ControllerKategorija();
+                choiceKategorijaUpdate.setValue(controllerKategorija.getById(newSelection.getIdKategorija()));
             }
         });
 
         VBox layout =  new VBox();
-        layout.getChildren().addAll(menuBar, table, inputLabel, hBoxInput1, hBoxInput2, new Separator(), updateLabel, hBoxUpdate1);
+        layout.getChildren().addAll(menuBar, table, inputLabel, hBoxInput1, hBoxInput2, new Separator(), updateLabel, hBoxUpdate1,
+                hBoxUpdate2, new Separator(), deleteLabel, hBoxDelete);
         Scene scene = new Scene(layout, 850, 620);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private static void deleteButton(TextField idLigaDelete, TableView<Liga> table)
+    {
+        int id = Integer.parseInt(idLigaDelete.getText());
+        int index = -1;
+        for(int i = 0; i < table.getItems().size(); i++)
+        {
+            if(table.getItems().get(i).getIdLiga() == id)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        ControllerLiga controllerLiga = new ControllerLiga();
+        if(controllerLiga.delete(id) == 1 && index != -1)
+        {
+            idLigaDelete.clear();
+            table.getItems().remove(index);
+            table.refresh();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Brisanje neuspjesno");
+            alert.setHeaderText("Id ne postoji ili neki drugi podatak zavisi od izabranog podatka");
+            javafx.animation.KeyFrame keyFrame = new javafx.animation.KeyFrame(Duration.seconds(5), e -> alert.close());
+            javafx.animation.Timeline timeline = new javafx.animation.Timeline(keyFrame);
+            timeline.play();
+
+            alert.show();
+        }
+    }
+
+    private static void updateLiga(TextField idLigaUpdate, TextField nazivLigeUpdate, ChoiceBox<Drzava> choiceDrzavaUpdate,
+                                   DatePicker datePickerPocetakUpdate, DatePicker datePickerKrajUpdate,
+                                   ChoiceBox<Kategorija> choiceKategorijaUpdate, TableView<Liga> table)
+    {
+        Liga liga = new Liga();
+        liga.setIdLiga(Integer.parseInt(idLigaUpdate.getText()));
+        liga.setNazivLige(nazivLigeUpdate.getText());
+        if(choiceDrzavaUpdate.getValue() != null)
+        {
+            liga.setIdDrzava(choiceDrzavaUpdate.getValue().getIdDrzava());
+            liga.setDrzava(choiceDrzavaUpdate.getValue().getDrzava());
+        }
+
+        LocalDate localDatePocetak = datePickerPocetakUpdate.getValue();
+        Date sqlDatePocetak = Date.valueOf(localDatePocetak);
+        liga.setDatumPocetka(sqlDatePocetak);
+
+        LocalDate localDateKraj = datePickerKrajUpdate.getValue();
+        Date sqlDateKraj = Date.valueOf(localDateKraj);
+        liga.setDatumKraja(sqlDateKraj);
+
+        liga.setIdKategorija(choiceKategorijaUpdate.getValue().getIdKategorija());
+        String kategorija = choiceKategorijaUpdate.getValue().getStarosnaKategorija() + " " +
+                choiceKategorijaUpdate.getValue().getNivoTakmicenja();
+        liga.setKategorija(kategorija);
+
+        int index = -1;
+        for(int i = 0; i < table.getItems().size(); i++)
+        {
+            if(table.getItems().get(i).getIdLiga() == liga.getIdLiga())
+            {
+                index = i;
+                break;
+            }
+        }
+
+        ControllerLiga controllerLiga = new ControllerLiga();
+        if(controllerLiga.update(liga) == 1 && index != -1)
+        {
+            idLigaUpdate.clear();
+            nazivLigeUpdate.clear();
+            choiceDrzavaUpdate.setValue(null);
+            datePickerKrajUpdate.setValue(null);
+            datePickerPocetakUpdate.setValue(null);
+            choiceKategorijaUpdate.setValue(null);
+            table.getItems().remove(index);
+            table.getItems().add(index, liga);
+            table.refresh();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Pogresan unos podataka");
+            javafx.animation.KeyFrame keyFrame = new javafx.animation.KeyFrame(Duration.seconds(3), e -> alert.close());
+            javafx.animation.Timeline timeline = new javafx.animation.Timeline(keyFrame);
+            timeline.play();
+            alert.show();
+        }
     }
 
     private static void insertLiga(TableView<Liga> table, TextField nazivLigeInput, ChoiceBox<Drzava> choiceDrzavaInput,

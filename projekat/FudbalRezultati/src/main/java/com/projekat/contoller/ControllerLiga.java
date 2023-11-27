@@ -21,4 +21,9 @@ public class ControllerLiga
     {
         return WrapperLiga.update(l);
     }
+
+    public int delete(int id)
+    {
+        return WrapperLiga.delete(id);
+    }
 }

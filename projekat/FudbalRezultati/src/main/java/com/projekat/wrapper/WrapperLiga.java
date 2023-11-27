@@ -12,7 +12,8 @@ public class WrapperLiga
 {
     private static final String SQL_SELECT_ALL = "select * from liga_prikaz";
     private static final String SQL_INSERT = "insert into liga(idLiga, nazivLige, idDrzava, datumPocetka, datumKraja, idKategorija) values(null, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "update liga set nazivLige = ?, idDrzava = ?, datumPocetka = ?, datumKraja = ?, idKatgorija = ? where idLiga = ?";
+    private static final String SQL_UPDATE = "update liga set nazivLige = ?, idDrzava = ?, datumPocetka = ?, datumKraja = ?, idKategorija = ? where idLiga = ?";
+    private static final String SQL_DELETE = "delete from liga where idLiga = ?";
 
     public static List<Liga> selectAll()
     {
@@ -89,6 +90,25 @@ public class WrapperLiga
             c = DBUtil.getConnection();
             Object values[] = {l.getNazivLige(), l.getIdDrzava(), l.getDatumPocetka(), l.getDatumKraja(), l.getIdKategorija(), l.getIdLiga()};
             ps = DBUtil.preparedStatement(c, SQL_UPDATE, false, values);
+            retVal = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.close(ps, c);
+        }
+        return retVal;
+    }
+
+    public static int delete(int id)
+    {
+        int retVal = 0;
+        Connection c = null;
+        PreparedStatement ps = null;
+        try {
+            c = DBUtil.getConnection();
+            ps = c.prepareStatement(SQL_DELETE, Statement.NO_GENERATED_KEYS);
+            ps.setInt(1, id);
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

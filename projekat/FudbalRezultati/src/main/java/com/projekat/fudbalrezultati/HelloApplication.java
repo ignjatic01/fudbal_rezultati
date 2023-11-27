@@ -4,7 +4,11 @@ package com.projekat.fudbalrezultati;
 
 import com.projekat.contoller.ControllerDrzava;
 import com.projekat.contoller.ControllerKategorija;
+import com.projekat.contoller.ControllerKlub;
+import com.projekat.contoller.ControllerUtakmica;
 import com.projekat.model.Drzava;
+import com.projekat.model.Klub;
+import com.projekat.model.Utakmica;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +20,7 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.util.List;
 
 public class HelloApplication extends Application {
 
@@ -41,11 +46,12 @@ public class HelloApplication extends Application {
     public static void main(String[] args)
     {
         launch();
-//        ControllerDrzava cDrzava = new ControllerDrzava();
-//        System.out.println(cDrzava.getById(34));
-//        System.out.println(cDrzava.delete(62));
-//        ControllerKategorija cKategorija = new ControllerKategorija();
-//        System.out.println(cKategorija.getById(5));
+//        ControllerUtakmica controllerUtakmica = new ControllerUtakmica();
+//        List<Utakmica> utakmicas = controllerUtakmica.getAll();
+//        for(Utakmica u : utakmicas)
+//        {
+//            System.out.println(u);
+//        }
     }
 
     public static MenuBar createMenuBar(Stage window)
@@ -77,8 +83,15 @@ public class HelloApplication extends Application {
         });
         opcije.getItems().add(osvjezi);
 
+        Menu utakmica = new Menu("Utakmica");
+
+        MenuItem utakmice = new MenuItem("Sve utakmice");
+        utakmice.setOnAction(e -> UtakmicaScene.ucitajScenu(window));
+
+        utakmica.getItems().addAll(utakmice);
+
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(sifarnici, opcije);
+        menuBar.getMenus().addAll(sifarnici, utakmica, opcije);
 
         return menuBar;
     }
