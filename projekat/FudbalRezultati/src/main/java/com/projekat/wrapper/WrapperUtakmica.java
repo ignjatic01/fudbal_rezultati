@@ -12,6 +12,8 @@ public class WrapperUtakmica
     private static final String SQL_SELECT = "select * from utakmice_prikaz";
     private static final String SQL_SELECT_BY_ID_LIGA = "select * from utakmice_prikaz where idLiga = ?";
     private static final String SQL_PRIKAZI_UTAKMICE_KOLA = "{call PrikaziUtakmiceKola(?, ?)}";
+    private static final String SQL_INSERT = "insert into utakmica(idUtakmica, idDomaci, idGosti, idStadion, datum, vrijeme, goloviDomaci," +
+            " goloviGosti, idLiga, kolo) values(null, ?, ?, ?, ?, ?, 0, 0, ?, ?)";
 
     public static List<Utakmica> selectAll()
     {
@@ -87,6 +89,40 @@ public class WrapperUtakmica
         }
         finally {
             DBUtil.close(rs, cs, c);
+        }
+        return retVal;
+    }
+
+    public static int insert(Utakmica u)
+    {
+        int retVal = 0;
+        Connection c = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            c = DBUtil.getConnection();
+            ps = c.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, u.getIdDomaci());
+            ps.setInt(2, u.getIdGosti());
+            ps.setInt(3, u.getIdStadion());
+            ps.setDate(4, u.getDatum());
+            ps.setTime(5, u.getVrijeme());
+            ps.setInt(6, u.getIdLiga());
+            ps.setInt(7, u.getKolo());
+            retVal = ps.executeUpdate();
+            if(retVal != 0)
+            {
+                rs = ps.getGeneratedKeys();
+                if(rs.next())
+                {
+                    u.setIdUtakmica(rs.getInt(1));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.close(rs, ps, c);
         }
         return retVal;
     }

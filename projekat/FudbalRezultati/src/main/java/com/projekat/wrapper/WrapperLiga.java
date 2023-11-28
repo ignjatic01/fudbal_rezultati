@@ -14,6 +14,7 @@ public class WrapperLiga
     private static final String SQL_INSERT = "insert into liga(idLiga, nazivLige, idDrzava, datumPocetka, datumKraja, idKategorija) values(null, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "update liga set nazivLige = ?, idDrzava = ?, datumPocetka = ?, datumKraja = ?, idKategorija = ? where idLiga = ?";
     private static final String SQL_DELETE = "delete from liga where idLiga = ?";
+    private static final String SQL_SELECT_BY_ID = "select * from liga_prikaz where idLiga = ?";
 
     public static List<Liga> selectAll()
     {
@@ -117,5 +118,30 @@ public class WrapperLiga
             DBUtil.close(ps, c);
         }
         return retVal;
+    }
+
+    public static Liga selectById(int id)
+    {
+        Liga liga = null;
+        Connection c = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            c = DBUtil.getConnection();
+            ps = c.prepareStatement(SQL_SELECT_BY_ID, Statement.NO_GENERATED_KEYS);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if(rs.next())
+            {
+                liga = new Liga(rs.getInt(1), rs.getString(4), rs.getInt(2), rs.getDate(6), rs.getDate(7), rs.getInt(3),
+                        rs.getString(5), rs.getString(8));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.close(rs, ps, c);
+        }
+        return liga;
     }
 }

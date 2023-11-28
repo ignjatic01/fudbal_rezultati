@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="651ba6ea-d5b5-465b-be5a-6e03fc4fdf4c" name="Changes" comment="Izmjene i rjesavanje problema">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerKlub.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerUtakmica.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaScene.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Klub.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Utakmica.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperKlub.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperUtakmica.java" afterDir="false" />
+    <list default="true" id="651ba6ea-d5b5-465b-be5a-6e03fc4fdf4c" name="Changes" comment="Prikaz i filtriranje utakmica sa pomocnim funkcijama i objektima na Backend strani">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerStadion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Stadion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperStadion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerKlub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerKlub.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerLiga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerLiga.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/LigaScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/LigaScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/model/Liga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Liga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerUtakmica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerUtakmica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperKlub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperKlub.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperLiga.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperLiga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperUtakmica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperUtakmica.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700959644017</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Prikaz i filtriranje utakmica sa pomocnim funkcijama i objektima na Backend strani">
+      <option name="closed" value="true" />
+      <created>1701105381341</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701105381341</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -139,6 +145,7 @@
     <MESSAGE value="Prikaz, Insert i Edit za tabelu Drzava" />
     <MESSAGE value="Delete za tabelu Drzava, prikaz i insert za tabelu Liga" />
     <MESSAGE value="Izmjene i rjesavanje problema" />
-    <option name="LAST_COMMIT_MESSAGE" value="Izmjene i rjesavanje problema" />
+    <MESSAGE value="Prikaz i filtriranje utakmica sa pomocnim funkcijama i objektima na Backend strani" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prikaz i filtriranje utakmica sa pomocnim funkcijama i objektima na Backend strani" />
   </component>
 </project>

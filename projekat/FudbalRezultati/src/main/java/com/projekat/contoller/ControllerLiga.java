@@ -26,4 +26,9 @@ public class ControllerLiga
     {
         return WrapperLiga.delete(id);
     }
+
+    public Liga getById(int id)
+    {
+        return WrapperLiga.selectById(id);
+    }
 }

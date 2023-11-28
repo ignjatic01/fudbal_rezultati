@@ -11,4 +11,12 @@ public class ControllerKlub
     {
         return WrapperKlub.selectAll();
     }
+    public List<Klub> getByLiga(int idLiga)
+    {
+        return WrapperKlub.selectByLiga(idLiga);
+    }
+    public Klub getById(int id)
+    {
+        return WrapperKlub.selectById(id);
+    }
 }

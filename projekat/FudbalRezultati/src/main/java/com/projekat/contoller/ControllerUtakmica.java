@@ -21,4 +21,11 @@ public class ControllerUtakmica
     {
         return WrapperUtakmica.getByIdLigaKolo(idLiga, kolo);
     }
+
+    public boolean save(Utakmica u)
+    {
+        return WrapperUtakmica.insert(u) == 1;
+    }
+
+
 }
