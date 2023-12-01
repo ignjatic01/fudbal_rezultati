@@ -301,7 +301,7 @@ public class UtakmicaScene
         Button detailsButton = new Button("Detalji");
         detailsButton.setStyle("-fx-background-color: #FFC107; -fx-text-fill: white;");
         detailsButton.setMinSize(128, 25);
-        //detailsButton.setOnAction(e -> detailsUtakmica(table, idUtakmicaUpdate));
+        detailsButton.setOnAction(e -> prikaziDetalje(idUtakmicaUpdate));
         StackPane spBtnDetails = new StackPane();
         //spBtnU.setPadding(new Insets(20, 10, 10, 70));
         spBtnDetails.getChildren().add(detailsButton);
@@ -327,7 +327,7 @@ public class UtakmicaScene
         Button deleteButton = new Button("Obriši");
         Label dummy = new Label();
         deleteButton.setStyle("-fx-background-color: #FF5252; -fx-text-fill: white;");
-        //deleteButton.setOnAction(e -> deleteButton(idLigaDelete, table));
+        deleteButton.setOnAction(e -> deleteUtakmica(idUtakmicaDelete, table));
         VBox spDBtn = new VBox();
         spDBtn.setPadding(new Insets(4, 0, -5, 15));
         spDBtn.getChildren().addAll(dummy ,deleteButton);
@@ -368,11 +368,106 @@ public class UtakmicaScene
         stage.show();
     }
 
+    private static void prikaziDetalje(TextField idUtakmicaUpdate)
+    {
+        ControllerUtakmica controllerUtakmica = new ControllerUtakmica();
+        Utakmica utakmica = controllerUtakmica.selectById(Integer.parseInt(idUtakmicaUpdate.getText()));
+        UtakmicaApp.ucitajStage(utakmica);
+    }
+
+    private static void deleteUtakmica(TextField idUtakmicaDelete, TableView<Utakmica> table)
+    {
+        int id = Integer.parseInt(idUtakmicaDelete.getText());
+        int index = -1;
+        for(int i = 0; i < table.getItems().size(); i++)
+        {
+            if(table.getItems().get(i).getIdUtakmica() == id)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        ControllerUtakmica controllerUtakmica = new ControllerUtakmica();
+        if(controllerUtakmica.delete(id) == 1 && index != -1)
+        {
+            idUtakmicaDelete.clear();
+            table.getItems().remove(index);
+            table.refresh();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Brisanje neuspjesno");
+            alert.setHeaderText("Id ne postoji ili neki drugi podatak zavisi od izabranog podatka");
+            javafx.animation.KeyFrame keyFrame = new javafx.animation.KeyFrame(Duration.seconds(5), e -> alert.close());
+            javafx.animation.Timeline timeline = new javafx.animation.Timeline(keyFrame);
+            timeline.play();
+
+            alert.show();
+        }
+    }
+
     private static void updateUtakmica(TableView<Utakmica> table, TextField idUtakmicaUpdate, ChoiceBox<Klub> choiceDomaciUpdate,
                                        ChoiceBox<Klub> choiceGostiUpdate, ChoiceBox<Stadion> choiceStadionUpdate,
                                        DatePicker datePickerUpdate, TextField vrijemeUpdate, ChoiceBox<Liga> choiceLigaUpdate,
                                        TextField koloUpdate)
     {
+        Utakmica utakmica = new Utakmica();
+        utakmica.setIdUtakmica(Integer.parseInt(idUtakmicaUpdate.getText()));
+        utakmica.setIdLiga(choiceLigaUpdate.getValue().getIdLiga());
+        utakmica.setLiga(choiceLigaUpdate.getValue().getNazivLige());
+        utakmica.setIdDomaci(choiceDomaciUpdate.getValue().getIdKlub());
+        utakmica.setDomaciKlub(choiceDomaciUpdate.getValue().getNazivKluba());
+        utakmica.setIdGosti(choiceGostiUpdate.getValue().getIdKlub());
+        utakmica.setGostiKlub(choiceGostiUpdate.getValue().getNazivKluba());
+        utakmica.setIdStadion(choiceStadionUpdate.getValue().getIdStadion());
+        utakmica.setStadion(choiceStadionUpdate.getValue().getNaziv());
+
+        LocalDate localDate = datePickerUpdate.getValue();
+        Date sqlDate = Date.valueOf(localDate);
+        utakmica.setDatum(sqlDate);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        try {
+            java.util.Date parsedDate = dateFormat.parse(vrijemeUpdate.getText());
+            Time time = new Time(parsedDate.getTime());
+            utakmica.setVrijeme(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        utakmica.setGoloviDomaci(0);
+        utakmica.setGoloviGosti(0);
+
+        int index = -1;
+        for(int i = 0; i < table.getItems().size(); i++)
+        {
+            if(table.getItems().get(i).getIdUtakmica() == utakmica.getIdUtakmica())
+            {
+                index = i;
+                break;
+            }
+        }
+
+        utakmica.setKolo(Integer.parseInt(koloUpdate.getText()));
+
+        ControllerUtakmica controllerUtakmica = new ControllerUtakmica();
+        if(controllerUtakmica.update(utakmica) == 1 && index != -1)
+        {
+            table.getItems().remove(index);
+            table.getItems().add(index, utakmica);
+            table.refresh();
+        }
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Pogresan unos podataka");
+            javafx.animation.KeyFrame keyFrame = new javafx.animation.KeyFrame(Duration.seconds(3), e -> alert.close());
+            javafx.animation.Timeline timeline = new javafx.animation.Timeline(keyFrame);
+            timeline.play();
+            alert.show();
+        }
     }
 
     private static void insertUtakmica(TableView<Utakmica> table, ChoiceBox<Klub> choiceDomaciInsert,

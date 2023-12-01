@@ -14,6 +14,9 @@ public class WrapperUtakmica
     private static final String SQL_PRIKAZI_UTAKMICE_KOLA = "{call PrikaziUtakmiceKola(?, ?)}";
     private static final String SQL_INSERT = "insert into utakmica(idUtakmica, idDomaci, idGosti, idStadion, datum, vrijeme, goloviDomaci," +
             " goloviGosti, idLiga, kolo) values(null, ?, ?, ?, ?, ?, 0, 0, ?, ?)";
+    private static final String SQL_UPDATE = "update utakmica set idDomaci = ?, idGosti = ?, idStadion = ?, datum = ?, vrijeme = ?, idLiga = ?, kolo = ? where idUtakmica = ?";
+    private static final String SQL_DELETE = "delete from utakmica where idUtakmica = ?";
+    private static final String SQL_SELECT_BY_ID = "select * from utakmice_prikaz where idUtakmica = ?";
 
     public static List<Utakmica> selectAll()
     {
@@ -125,5 +128,69 @@ public class WrapperUtakmica
             DBUtil.close(rs, ps, c);
         }
         return retVal;
+    }
+
+    public static int update(Utakmica u)
+    {
+        int retVal = 0;
+        Connection c = null;
+        PreparedStatement ps = null;
+        try {
+            c = DBUtil.getConnection();
+            Object values[] = {u.getIdDomaci(), u.getIdGosti(), u.getIdStadion(), u.getDatum(), u.getVrijeme(), u.getIdLiga(), u.getKolo(), u.getIdUtakmica()};
+            ps = DBUtil.preparedStatement(c, SQL_UPDATE, false, values);
+            retVal = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.close(ps, c);
+        }
+        return retVal;
+    }
+
+    public static int delete(int id)
+    {
+        int retVal = 0;
+        Connection c = null;
+        PreparedStatement ps = null;
+        try {
+            c = DBUtil.getConnection();
+            ps = c.prepareStatement(SQL_DELETE, Statement.NO_GENERATED_KEYS);
+            ps.setInt(1, id);
+            retVal = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.close(ps, c);
+        }
+        return retVal;
+    }
+
+    public static Utakmica selectById(int idUtakmica)
+    {
+        Utakmica utakmica = null;
+        Connection c = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            c = DBUtil.getConnection();
+            ps = c.prepareStatement(SQL_SELECT_BY_ID, Statement.NO_GENERATED_KEYS);
+            ps.setInt(1, idUtakmica);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                utakmica = new Utakmica(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDate(5),
+                        rs.getTime(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getString(11),
+                        rs.getString(12), rs.getString(13), rs.getString(14));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.close(rs, ps, c);
+        }
+        return utakmica;
     }
 }

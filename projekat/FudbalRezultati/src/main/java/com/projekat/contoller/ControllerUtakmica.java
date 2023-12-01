@@ -27,5 +27,18 @@ public class ControllerUtakmica
         return WrapperUtakmica.insert(u) == 1;
     }
 
+    public int update(Utakmica u)
+    {
+        return WrapperUtakmica.update(u);
+    }
 
+    public int delete(int id)
+    {
+        return WrapperUtakmica.delete(id);
+    }
+
+    public Utakmica selectById(int id)
+    {
+        return WrapperUtakmica.selectById(id);
+    }
 }

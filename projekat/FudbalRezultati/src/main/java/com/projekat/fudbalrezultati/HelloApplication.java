@@ -2,13 +2,8 @@ package com.projekat.fudbalrezultati;
 
 
 
-import com.projekat.contoller.ControllerDrzava;
-import com.projekat.contoller.ControllerKategorija;
-import com.projekat.contoller.ControllerKlub;
-import com.projekat.contoller.ControllerUtakmica;
-import com.projekat.model.Drzava;
-import com.projekat.model.Klub;
-import com.projekat.model.Utakmica;
+import com.projekat.contoller.*;
+import com.projekat.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -51,6 +46,18 @@ public class HelloApplication extends Application {
 //        for(Utakmica u : utakmicas)
 //        {
 //            System.out.println(u);
+//        }
+//        ControllerIgrac controllerIgrac = new ControllerIgrac();
+//        List<Igrac> igracs = controllerIgrac.getByKlubID(13);
+//        for(Igrac i : igracs)
+//        {
+//            System.out.println(i);
+//        }
+//        ControllerIgracNaUtakmici controllerIgracNaUtakmici = new ControllerIgracNaUtakmici();
+//        List<IgracNaUtakmici> igracNaUtakmicis = controllerIgracNaUtakmici.getAllById(1, 1);
+//        for(IgracNaUtakmici inu : igracNaUtakmicis)
+//        {
+//            System.out.println(inu);
 //        }
     }
 
