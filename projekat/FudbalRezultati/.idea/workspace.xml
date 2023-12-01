@@ -4,19 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="651ba6ea-d5b5-465b-be5a-6e03fc4fdf4c" name="Changes" comment="Full Gui za View Utakmice, backend za dodavanje utakmica">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerIgrac.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerIgracNaUtakmici.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Igrac.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/IgracNaUtakmici.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperIgrac.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperIgracNaUtakmici.java" afterDir="false" />
+    <list default="true" id="651ba6ea-d5b5-465b-be5a-6e03fc4fdf4c" name="Changes" comment="Gui za UtakmicaApp i crud operacije za dodavanje igraca">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerGol.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/model/Gol.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperGol.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerUtakmica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/contoller/ControllerUtakmica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperUtakmica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/wrapper/WrapperUtakmica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/projekat/fudbalrezultati/UtakmicaApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,18 +45,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/milan/Za snimanje/Fakultet/Baze Podataka/Tst/11108_20-Ognjen_Milekic-Prodaja drvene gradje/projekat_bp_ognjen/projekat_bp_ognjen&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/milan/Za snimanje/Fakultet/3. godina/Baze Podataka/1143_20-Milan_Ignjatic-Fudbal_rezultati/projekat/FudbalRezultati",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/projekat/fudbalrezultati" />
@@ -145,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701213289114</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Gui za UtakmicaApp i crud operacije za dodavanje igraca">
+      <option name="closed" value="true" />
+      <created>1701427500076</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701427500076</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -156,6 +158,7 @@
     <MESSAGE value="Izmjene i rjesavanje problema" />
     <MESSAGE value="Prikaz i filtriranje utakmica sa pomocnim funkcijama i objektima na Backend strani" />
     <MESSAGE value="Full Gui za View Utakmice, backend za dodavanje utakmica" />
-    <option name="LAST_COMMIT_MESSAGE" value="Full Gui za View Utakmice, backend za dodavanje utakmica" />
+    <MESSAGE value="Gui za UtakmicaApp i crud operacije za dodavanje igraca" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gui za UtakmicaApp i crud operacije za dodavanje igraca" />
   </component>
 </project>

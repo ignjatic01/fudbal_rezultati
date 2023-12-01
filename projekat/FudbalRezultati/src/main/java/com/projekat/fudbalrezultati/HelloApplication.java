@@ -59,6 +59,12 @@ public class HelloApplication extends Application {
 //        {
 //            System.out.println(inu);
 //        }
+//        ControllerGol controllerGol = new ControllerGol();
+//        List<Gol> gols = controllerGol.getAllByUtakmica(2);
+//        for(Gol g : gols)
+//        {
+//            System.out.println(g);
+//        }
     }
 
     public static MenuBar createMenuBar(Stage window)

@@ -1,6 +1,7 @@
 package com.projekat.fudbalrezultati;
 
 import com.projekat.contoller.ControllerDrzava;
+import com.projekat.contoller.ControllerGol;
 import com.projekat.contoller.ControllerIgrac;
 import com.projekat.contoller.ControllerIgracNaUtakmici;
 import com.projekat.model.*;
@@ -23,6 +24,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class UtakmicaApp
 {
@@ -167,12 +171,87 @@ public class UtakmicaApp
         stadion.setAlignment(Pos.CENTER);
         stadion.getChildren().addAll(stadionLabel);
 
+        //Dogadjaji na utakmici
+        List<Label> listaDogadjajaLabel = new ArrayList<>();
+        List<StackPane> listaDogadjaja = new ArrayList<>();
+
+        ControllerGol controllerGol = new ControllerGol();
+        ObservableList<Gol> golovi = FXCollections.observableArrayList(controllerGol.getAllByUtakmica(utakmica.getIdUtakmica()));
+
+        for(Gol g : golovi)
+        {
+            Label temp = new Label(g.toString());
+            StackPane spTemp = new StackPane();
+            if(utakmica.getIdGosti() == g.getIdKlub())
+            {
+                spTemp.setAlignment(Pos.CENTER_RIGHT);
+                spTemp.setPadding(new Insets(2, 5, 2, 2));
+                spTemp.getChildren().add(temp);
+            }
+            else
+            {
+                spTemp.setAlignment(Pos.CENTER_LEFT);
+                spTemp.setPadding(new Insets(2, 2, 2, 5));
+                spTemp.getChildren().add(temp);
+            }
+            listaDogadjaja.add(spTemp);
+        }
+
+        GridPane operacije = new GridPane();
+
+        Button dodajGolButton = new Button("Dodaj gol");
+        dodajGolButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
+        dodajGolButton.setMinSize(128, 25);
+//        dodajGolButton.setOnAction(e -> dodajGol());
+        StackPane spBtnDG = new StackPane();
+        spBtnDG.setPadding(new Insets(10, 125, 20, 10));
+        spBtnDG.getChildren().add(dodajGolButton);
+        spBtnDG.setAlignment(Pos.CENTER_LEFT);
+        GridPane.setConstraints(spBtnDG, 0, 0);
+
+        Button dodajKartonButton = new Button("Dodaj karton");
+        dodajKartonButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
+        dodajKartonButton.setMinSize(128, 25);
+//        dodajKartonButton.setOnAction(e -> dodajKarton());
+        StackPane spBtnDK = new StackPane();
+        spBtnDK.setPadding(new Insets(10, 10, 20, 0));
+        spBtnDK.setAlignment(Pos.CENTER_RIGHT);
+        spBtnDK.getChildren().add(dodajKartonButton);
+        GridPane.setConstraints(spBtnDK, 1, 0);
+
+        Button dodajIzmjenuButton = new Button("Dodaj izmjenu");
+        dodajIzmjenuButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
+        dodajIzmjenuButton.setMinSize(128, 25);
+//        dodajIzmjenuButton.setOnAction(e -> dodajIzmjenu());
+        StackPane spBtnDI = new StackPane();
+        spBtnDI.setPadding(new Insets(10, 125, 20, 10));
+        spBtnDI.setAlignment(Pos.CENTER_LEFT);
+        spBtnDI.getChildren().add(dodajIzmjenuButton);
+        GridPane.setConstraints(spBtnDI, 0, 1);
+
+        Button dodajOdbranuButton = new Button("Dodaj odbranu");
+        dodajOdbranuButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
+        dodajOdbranuButton.setMinSize(128, 25);
+//        dodajOdbranuButton.setOnAction(e -> dodajOdbranu());
+        StackPane spBtnDO = new StackPane();
+        spBtnDO.setPadding(new Insets(10, 10, 20, 0));
+        spBtnDO.setAlignment(Pos.CENTER_RIGHT);
+        spBtnDO.getChildren().add(dodajOdbranuButton);
+        GridPane.setConstraints(spBtnDO, 1, 1);
+
+        operacije.getChildren().addAll(spBtnDG, spBtnDK, spBtnDI, spBtnDO);
+
         VBox vBoxUtakmica = new VBox();
         vBoxUtakmica.setSpacing(10);
         //vBoxUtakmica.setPadding(new Insets(0, 40, 0, 40));
         vBoxUtakmica.setMinWidth(400);
         vBoxUtakmica.setMaxWidth(400);
-        vBoxUtakmica.getChildren().addAll(rezultat, liga, vrijeme, stadion);
+        vBoxUtakmica.getChildren().addAll(rezultat, liga, vrijeme, stadion, new Separator());
+        for(StackPane sp : listaDogadjaja)
+        {
+            vBoxUtakmica.getChildren().add(sp);
+        }
+        vBoxUtakmica.getChildren().addAll(new Separator(), operacije);
 
         //Gostujuci igraci
         Label gostiLabel = new Label("Gosti - " + utakmica.getGostiKlub());
